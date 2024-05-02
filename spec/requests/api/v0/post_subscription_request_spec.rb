@@ -15,6 +15,33 @@ RSpec.describe "ENDPOINT post /subscription", type: :request do
 
       expect(response).to be_successful
       expect(response.status).to eq(201)
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(result).to have_key(:data)
+      expect(result[:data]).to be_a(Hash)
+      
+      data = result[:data]
+
+      expect(data).to have_key(:id)
+      expect(data[:id]).to be_a(String)
+      expect(data).to have_key(:type)
+      expect(data[:type]).to eq("subscription")
+      expect(data).to have_key(:attributes)
+      expect(data[:attributes]).to be_a(Hash)
+
+      attributes = data[:attributes]
+
+      expect(attributes).to have_key(:tea_id)
+      expect(attributes[:tea_id]).to eq(@tea.id)
+      expect(attributes).to have_key(:customer_id)
+      expect(attributes[:customer_id]).to eq(@customer.id)
+      expect(attributes).to have_key(:price)
+      expect(attributes[:price]).to eq(35)
+      expect(attributes).to have_key(:frequency)
+      expect(attributes[:frequency]).to eq(12)
+      expect(attributes).to have_key(:status)
+      expect(attributes[:status]).to eq("active")
     end
   end 
 end
