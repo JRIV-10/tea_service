@@ -7,8 +7,8 @@ RSpec.describe "ENDPOINT post /subscription", type: :request do
       @customer = Customer.create!({first_name: "Joe", last_name: "Ray", email: "fake@email.com", address: "123 Fake Lane Austin, TX 12345"})
       @tea = Tea.create!({title: "Early Morning", description: "Tea with alot of Caffeine", temp: 120, brew_time: 20})
       @headers = {"CONTENT_TYPE" => "application/json"}
-      @body = {tea_id: @tea.id, customer_id: @customer.id, price: 35, frequency: 12, status: 1, title: @tea.title}
-      @body_missing = {tea_id: @tea.id, customer_id: @customer.id, frequency: 12, status: 1, title: @tea.title}
+      @body = {tea_id: @tea.id, customer_id: @customer.id, price: 55, frequency: 8, status: 1, title: @tea.title}
+      @body_missing = {tea_id: @tea.id, customer_id: @customer.id, frequency: 8, status: 1, title: @tea.title}
     end
 
     it "creates a subscription from the request" do
@@ -38,9 +38,9 @@ RSpec.describe "ENDPOINT post /subscription", type: :request do
       expect(attributes).to have_key(:customer_id)
       expect(attributes[:customer_id]).to eq(@customer.id)
       expect(attributes).to have_key(:price)
-      expect(attributes[:price]).to eq(35)
+      expect(attributes[:price]).to eq(55)
       expect(attributes).to have_key(:frequency)
-      expect(attributes[:frequency]).to eq(12)
+      expect(attributes[:frequency]).to eq(8)
       expect(attributes).to have_key(:status)
       expect(attributes[:status]).to eq("active")
     end
