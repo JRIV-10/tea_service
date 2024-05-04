@@ -23,7 +23,7 @@ RSpec.describe "ENDPOINT get /", type: :request do
       expect(response.status).to eq(200)
 
       result = JSON.parse(response.body, symbolize_names: true)
-
+      
       expect(result).to have_key(:data)
       expect(result[:data]).to be_a(Hash)
       

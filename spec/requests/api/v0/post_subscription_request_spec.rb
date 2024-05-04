@@ -21,7 +21,7 @@ RSpec.describe "ENDPOINT post /subscription", type: :request do
       
       expect(result).to have_key(:data)
       expect(result[:data]).to be_a(Hash)
-
+      
       data = result[:data]
 
       expect(data).to have_key(:id)
